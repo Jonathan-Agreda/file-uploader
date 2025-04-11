@@ -48,6 +48,8 @@ app.use(
     cookie: {
       maxAge: 10 * 60 * 1000, // 30 segundos
       secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      sameSite: "strict", // Evita problemas de CSRF
     },
   })
 );
