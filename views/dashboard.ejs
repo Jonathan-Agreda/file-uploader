@@ -1,0 +1,41 @@
+<h1>Dashboard</h1>
+<p>Bienvenido, <%= user.email %></p>
+
+<h2>Tus archivos</h2>
+<% if (files.length > 0) { %>
+<ul>
+  <% files.forEach(file => { %>
+  <li>
+    <a href="/files/<%= file.id %>"><%= file.name %></a>
+    <span><%= file.size %> KB</span>
+  </li>
+  <% }) %>
+</ul>
+<% } else { %>
+<p>No tienes archivos subidos.</p>
+<% } %>
+
+<h2>Tus carpetas</h2>
+<% if (folders.length > 0) { %>
+<ul>
+  <% folders.forEach(folder => { %>
+  <li>
+    <a href="/folders/<%= folder.id %>"><%= folder.name %></a>
+  </li>
+  <% }) %>
+</ul>
+<% } else { %>
+<p>No tienes carpetas creadas.</p>
+<% } %>
+
+<h3>Subir archivo</h3>
+<form action="/files/upload" method="POST" enctype="multipart/form-data">
+  <input type="file" name="file" required />
+  <button type="submit">Subir</button>
+</form>
+
+<h3>Crear carpeta</h3>
+<form action="/folders/create" method="POST">
+  <input type="text" name="name" placeholder="Nombre de la carpeta" required />
+  <button type="submit">Crear</button>
+</form>

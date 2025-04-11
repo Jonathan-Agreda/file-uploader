@@ -1,0 +1,36 @@
+<h1>Bienvenido a File Uploader</h1>
+<% if (user) { %>
+<p>Hola, <%= user.email %>!</p>
+<a href="/dashboard">Ir al Dashboard</a>
+<% } else { %>
+<p>Por favor inicia sesión o regístrate para comenzar.</p>
+<!-- Enlaces para Iniciar Sesión y Registrarse -->
+<div style="margin-top: 20px">
+  <a
+    href="/auth/login"
+    style="
+      margin-right: 10px;
+      padding: 8px 16px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    "
+  >
+    Iniciar Sesión
+  </a>
+
+  <a
+    href="/auth/register"
+    style="
+      padding: 8px 16px;
+      background: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    "
+  >
+    Registrarse
+  </a>
+</div>
+<% } %>

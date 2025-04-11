@@ -1,0 +1,26 @@
+<h1>Carpeta: <%= folder.name %></h1>
+
+<a href="/dashboard" class="btn">Volver al Dashboard</a>
+
+<h2>Archivos en esta carpeta</h2>
+<% if (folder.files.length > 0) { %>
+<ul>
+  <% folder.files.forEach(file => { %>
+  <li>
+    <a href="/files/<%= file.id %>"><%= file.name %></a>
+  </li>
+  <% }) %>
+</ul>
+<% } else { %>
+<p>No hay archivos en esta carpeta.</p>
+<% } %>
+
+<h3>Subir archivo a esta carpeta</h3>
+<form
+  action="/files/upload?folderId=<%= folder.id %>"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <input type="file" name="file" required />
+  <button type="submit">Subir</button>
+</form>

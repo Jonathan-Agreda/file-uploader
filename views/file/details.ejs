@@ -1,0 +1,10 @@
+<h1>Detalles del archivo</h1>
+
+<div class="file-details">
+  <h2><%= file.name %></h2>
+  <p>Tamaño: <%= file.size %> KB</p>
+  <p>Subido el: <%= file.uploadDate %></p>
+  <p>Ubicación: <%= file.url %></p>
+  <a href="/files/<%= file.id %>/download" class="btn">Descargar</a>
+  <a href="/dashboard" class="btn">Volver al Dashboard</a>
+</div>

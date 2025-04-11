@@ -1,0 +1,41 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User_fu {
+  id        Int         @id @default(autoincrement())
+  email     String      @unique
+  password  String
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  // Añade estas relaciones inversas
+  files     File_fu[]
+  folders   Folder_fu[]
+}
+
+model File_fu {
+  id        Int      @id @default(autoincrement())
+  name      String
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int
+  folderId  Int?      // Puede ser nulo si no pertenece a una carpeta
+  folder    Folder_fu? @relation(fields: [folderId], references: [id])
+  user      User_fu   @relation(fields: [userId], references: [id])
+}
+
+model Folder_fu {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int
+  user      User_fu   @relation(fields: [userId], references: [id])
+  files     File_fu[] // Relación con el modelo File_fu
+}
